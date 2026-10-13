@@ -1,5 +1,7 @@
 #include "scheduler.h"
 
+#include <cstdint>
+
 namespace esphome {
 namespace jk_rs485_native_master {
 
@@ -85,15 +87,16 @@ bool Scheduler::enqueue_write(const Job &job) {
 }
 
 bool Scheduler::due_for_tx(uint32_t now, uint32_t last_tx_start_ms, uint32_t last_rx_byte_ms) const {
-  // Unsigned wrap: elapsed(0x20, 0xFFFFFFF0) == 0x30. last_*=0 is "never" only at
-  // boot, when now is also near 0; after wrap last_* is a high timestamp, not 0.
-  if (last_tx_start_ms == 0 && last_rx_byte_ms == 0 && now < 0x80000000u) {
-    return true;
-  }
-  if (elapsed(now, last_tx_start_ms) < timing_.min_command_gap_ms) {
+  auto gap_elapsed = [now](uint32_t then) -> uint32_t {
+    if (then == 0) {
+      return UINT32_MAX;  // never transmitted / never received
+    }
+    return Scheduler::elapsed(now, then);
+  };
+  if (gap_elapsed(last_tx_start_ms) < timing_.min_command_gap_ms) {
     return false;
   }
-  if (elapsed(now, last_rx_byte_ms) < timing_.turnaround_ms) {
+  if (gap_elapsed(last_rx_byte_ms) < timing_.turnaround_ms) {
     return false;
   }
   return true;
