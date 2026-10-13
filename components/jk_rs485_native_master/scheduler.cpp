@@ -85,13 +85,15 @@ bool Scheduler::enqueue_write(const Job &job) {
 }
 
 bool Scheduler::due_for_tx(uint32_t now, uint32_t last_tx_start_ms, uint32_t last_rx_byte_ms) const {
-  // last_*=0 means "never": unsigned wrap would make elapsed(now, 0) look huge after millis
-  // overflow, but the first TX after boot / after wrap with a stale 0xffffffff timestamp
-  // must still honour gap/turnaround. Treat 0 as no previous event.
-  if (last_tx_start_ms != 0 && elapsed(now, last_tx_start_ms) < timing_.min_command_gap_ms) {
+  // Unsigned wrap: elapsed(0x20, 0xFFFFFFF0) == 0x30. last_*=0 is "never" only at
+  // boot, when now is also near 0; after wrap last_* is a high timestamp, not 0.
+  if (last_tx_start_ms == 0 && last_rx_byte_ms == 0 && now < 0x80000000u) {
+    return true;
+  }
+  if (elapsed(now, last_tx_start_ms) < timing_.min_command_gap_ms) {
     return false;
   }
-  if (last_rx_byte_ms != 0 && elapsed(now, last_rx_byte_ms) < timing_.turnaround_ms) {
+  if (elapsed(now, last_rx_byte_ms) < timing_.turnaround_ms) {
     return false;
   }
   return true;

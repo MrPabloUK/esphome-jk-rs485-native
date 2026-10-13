@@ -1293,275 +1293,139 @@ number:
     jk_rs485_native_bms_id: bms1
     cell_smart_sleep_voltage:
       name: "Pack1 cell smart sleep voltage"
-      filters:
-        - throttle: 30s
     cell_undervoltage_protection:
       name: "Pack1 cell undervoltage protection"
-      filters:
-        - throttle: 30s
     cell_undervoltage_protection_recovery:
       name: "Pack1 cell undervoltage protection recovery"
-      filters:
-        - throttle: 30s
     cell_overvoltage_protection:
       name: "Pack1 cell overvoltage protection"
-      filters:
-        - throttle: 30s
     cell_overvoltage_protection_recovery:
       name: "Pack1 cell overvoltage protection recovery"
-      filters:
-        - throttle: 30s
     cell_balancing_trigger_voltage:
       name: "Pack1 cell balancing trigger voltage"
-      filters:
-        - throttle: 30s
     cell_soc100_voltage:
       name: "Pack1 cell soc100 voltage"
-      filters:
-        - throttle: 30s
     cell_soc0_voltage:
       name: "Pack1 cell soc0 voltage"
-      filters:
-        - throttle: 30s
     cell_request_charge_voltage:
       name: "Pack1 cell request charge voltage"
-      filters:
-        - throttle: 30s
     cell_request_float_voltage:
       name: "Pack1 cell request float voltage"
-      filters:
-        - throttle: 30s
     cell_power_off_voltage:
       name: "Pack1 cell power off voltage"
-      filters:
-        - throttle: 30s
     cell_balancing_starting_voltage:
       name: "Pack1 cell balancing starting voltage"
-      filters:
-        - throttle: 30s
     max_charging_current:
       name: "Pack1 max charging current"
-      filters:
-        - throttle: 30s
     charging_overcurrent_protection_delay:
       name: "Pack1 charging overcurrent protection delay"
-      filters:
-        - throttle: 30s
     charging_overcurrent_protection_recovery_delay:
       name: "Pack1 charging overcurrent protection recovery delay"
-      filters:
-        - throttle: 30s
     max_discharging_current:
       name: "Pack1 max discharging current"
-      filters:
-        - throttle: 30s
     discharging_overcurrent_protection_delay:
       name: "Pack1 discharging overcurrent protection delay"
-      filters:
-        - throttle: 30s
     discharging_overcurrent_protection_recovery_delay:
       name: "Pack1 discharging overcurrent protection recovery delay"
-      filters:
-        - throttle: 30s
     short_circuit_protection_delay:
       name: "Pack1 short circuit protection delay"
-      filters:
-        - throttle: 30s
     short_circuit_protection_recovery_delay:
       name: "Pack1 short circuit protection recovery delay"
-      filters:
-        - throttle: 30s
     max_balancing_current:
       name: "Pack1 max balancing current"
-      filters:
-        - throttle: 30s
     charging_overtemperature_protection:
       name: "Pack1 charging overtemperature protection"
-      filters:
-        - throttle: 30s
     charging_overtemperature_protection_recovery:
       name: "Pack1 charging overtemperature protection recovery"
-      filters:
-        - throttle: 30s
     discharging_overtemperature_protection:
       name: "Pack1 discharging overtemperature protection"
-      filters:
-        - throttle: 30s
     discharging_overtemperature_protection_recovery:
       name: "Pack1 discharging overtemperature protection recovery"
-      filters:
-        - throttle: 30s
     charging_lowtemperature_protection:
       name: "Pack1 charging lowtemperature protection"
-      filters:
-        - throttle: 30s
     charging_lowtemperature_protection_recovery:
       name: "Pack1 charging lowtemperature protection recovery"
-      filters:
-        - throttle: 30s
     mos_overtemperature_protection:
       name: "Pack1 mos overtemperature protection"
-      filters:
-        - throttle: 30s
     mos_overtemperature_protection_recovery:
       name: "Pack1 mos overtemperature protection recovery"
-      filters:
-        - throttle: 30s
     cell_count_settings:
       name: "Pack1 cell count settings"
-      filters:
-        - throttle: 30s
     battery_capacity_total_settings:
       name: "Pack1 battery capacity total settings"
-      filters:
-        - throttle: 30s
     precharging_time_from_discharge:
       name: "Pack1 precharging time from discharge"
-      filters:
-        - throttle: 30s
     cell_request_charge_voltage_time:
       name: "Pack1 cell request charge voltage time"
-      filters:
-        - throttle: 30s
     cell_request_float_voltage_time:
       name: "Pack1 cell request float voltage time"
-      filters:
-        - throttle: 30s
   - platform: jk_rs485_native_bms
     jk_rs485_native_bms_id: bms2
     cell_smart_sleep_voltage:
       name: "Pack2 cell smart sleep voltage"
-      filters:
-        - throttle: 30s
     cell_undervoltage_protection:
       name: "Pack2 cell undervoltage protection"
-      filters:
-        - throttle: 30s
     cell_undervoltage_protection_recovery:
       name: "Pack2 cell undervoltage protection recovery"
-      filters:
-        - throttle: 30s
     cell_overvoltage_protection:
       name: "Pack2 cell overvoltage protection"
-      filters:
-        - throttle: 30s
     cell_overvoltage_protection_recovery:
       name: "Pack2 cell overvoltage protection recovery"
-      filters:
-        - throttle: 30s
     cell_balancing_trigger_voltage:
       name: "Pack2 cell balancing trigger voltage"
-      filters:
-        - throttle: 30s
     cell_soc100_voltage:
       name: "Pack2 cell soc100 voltage"
-      filters:
-        - throttle: 30s
     cell_soc0_voltage:
       name: "Pack2 cell soc0 voltage"
-      filters:
-        - throttle: 30s
     cell_request_charge_voltage:
       name: "Pack2 cell request charge voltage"
-      filters:
-        - throttle: 30s
     cell_request_float_voltage:
       name: "Pack2 cell request float voltage"
-      filters:
-        - throttle: 30s
     cell_power_off_voltage:
       name: "Pack2 cell power off voltage"
-      filters:
-        - throttle: 30s
     cell_balancing_starting_voltage:
       name: "Pack2 cell balancing starting voltage"
-      filters:
-        - throttle: 30s
     max_charging_current:
       name: "Pack2 max charging current"
-      filters:
-        - throttle: 30s
     charging_overcurrent_protection_delay:
       name: "Pack2 charging overcurrent protection delay"
-      filters:
-        - throttle: 30s
     charging_overcurrent_protection_recovery_delay:
       name: "Pack2 charging overcurrent protection recovery delay"
-      filters:
-        - throttle: 30s
     max_discharging_current:
       name: "Pack2 max discharging current"
-      filters:
-        - throttle: 30s
     discharging_overcurrent_protection_delay:
       name: "Pack2 discharging overcurrent protection delay"
-      filters:
-        - throttle: 30s
     discharging_overcurrent_protection_recovery_delay:
       name: "Pack2 discharging overcurrent protection recovery delay"
-      filters:
-        - throttle: 30s
     short_circuit_protection_delay:
       name: "Pack2 short circuit protection delay"
-      filters:
-        - throttle: 30s
     short_circuit_protection_recovery_delay:
       name: "Pack2 short circuit protection recovery delay"
-      filters:
-        - throttle: 30s
     max_balancing_current:
       name: "Pack2 max balancing current"
-      filters:
-        - throttle: 30s
     charging_overtemperature_protection:
       name: "Pack2 charging overtemperature protection"
-      filters:
-        - throttle: 30s
     charging_overtemperature_protection_recovery:
       name: "Pack2 charging overtemperature protection recovery"
-      filters:
-        - throttle: 30s
     discharging_overtemperature_protection:
       name: "Pack2 discharging overtemperature protection"
-      filters:
-        - throttle: 30s
     discharging_overtemperature_protection_recovery:
       name: "Pack2 discharging overtemperature protection recovery"
-      filters:
-        - throttle: 30s
     charging_lowtemperature_protection:
       name: "Pack2 charging lowtemperature protection"
-      filters:
-        - throttle: 30s
     charging_lowtemperature_protection_recovery:
       name: "Pack2 charging lowtemperature protection recovery"
-      filters:
-        - throttle: 30s
     mos_overtemperature_protection:
       name: "Pack2 mos overtemperature protection"
-      filters:
-        - throttle: 30s
     mos_overtemperature_protection_recovery:
       name: "Pack2 mos overtemperature protection recovery"
-      filters:
-        - throttle: 30s
     cell_count_settings:
       name: "Pack2 cell count settings"
-      filters:
-        - throttle: 30s
     battery_capacity_total_settings:
       name: "Pack2 battery capacity total settings"
-      filters:
-        - throttle: 30s
     precharging_time_from_discharge:
       name: "Pack2 precharging time from discharge"
-      filters:
-        - throttle: 30s
     cell_request_charge_voltage_time:
       name: "Pack2 cell request charge voltage time"
-      filters:
-        - throttle: 30s
     cell_request_float_voltage_time:
       name: "Pack2 cell request float voltage time"
-      filters:
-        - throttle: 30s

@@ -118,7 +118,7 @@ def pack_entities(pack: str, bms_id: str) -> str:
         ),
         "text_sensor": platform_block(texts, lambda _key: "hot"),
         "switch": platform_block(switches, lambda _key: "hot"),
-        "number": platform_block(numbers, lambda _key: "throttle"),
+        "number": platform_block(numbers, lambda _key: "hot"),
     }
 
 
