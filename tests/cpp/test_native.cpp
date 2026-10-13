@@ -261,7 +261,10 @@ static void test_millis_rollover() {
   t.min_command_gap_ms = 150;
   t.turnaround_ms = 25;
   s.set_timing(t);
-  CHECK(s.due_for_tx(now, then, then));
+  CHECK(!s.due_for_tx(now, then, then));  // 0x30 ms still inside the 150 ms gap
+  uint32_t after_gap = then + 150;        // wraps to 0x84
+  CHECK(Scheduler::elapsed(after_gap, then) == 150);
+  CHECK(s.due_for_tx(after_gap, then, then));
 }
 
 static void test_write_ack_sizes() {
