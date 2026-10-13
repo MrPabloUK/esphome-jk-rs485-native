@@ -51,9 +51,13 @@ ParseResult FrameParser::try_parse() {
   const size_t preamble_index =
       preamble_found ? static_cast<size_t>(std::distance(buffer_.begin(), preamble_it)) : buffer_.size();
 
-  if (buffer_.size() >= SHORT_REPLY_SIZE && !preamble_found) {
+  // Prefer an 8-byte FC10 ACK over an 11-byte dump request: an ACK followed by a dump
+  // (55 AA ...) shares the first 6 payload bytes of a request, so checking the request
+  // first would swallow the ACK CRC plus the dump preamble.
+  if (buffer_.size() >= SHORT_REPLY_SIZE) {
     const uint8_t *raw = buffer_.data();
-    if (check_crc_le(raw, 6, raw[6], raw[7])) {
+    const bool ack_before_dump = !preamble_found || preamble_index >= SHORT_REPLY_SIZE;
+    if (ack_before_dump && check_crc_le(raw, 6, raw[6], raw[7])) {
       result.kind = ParseKind::SHORT_REPLY;
       result.payload.assign(raw, raw + SHORT_REPLY_SIZE);
       erase_prefix_(SHORT_REPLY_SIZE);  // consume all 8 bytes (fixes upstream short_size-1 bug)

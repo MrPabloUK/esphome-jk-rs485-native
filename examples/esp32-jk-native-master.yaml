@@ -607,220 +607,6 @@ sensor:
       name: "Pack1 cell overvoltage protection release time"
       filters:
         - throttle: 30s
-
-binary_sensor:
-  - platform: jk_rs485_native_bms
-    jk_rs485_native_bms_id: bms1
-
-text_sensor:
-  - platform: jk_rs485_native_bms
-    jk_rs485_native_bms_id: bms1
-    operation_status:
-      name: "Pack1 operation status"
-    errors:
-      name: "Pack1 errors"
-    battery_type:
-      name: "Pack1 battery type"
-    device_type:
-      name: "Pack1 device type"
-    software_version:
-      name: "Pack1 software version"
-    manufacturer:
-      name: "Pack1 manufacturer"
-    total_runtime_formatted:
-      name: "Pack1 total runtime formatted"
-    network_nodes_available:
-      name: "Pack1 network nodes available"
-    info_vendorid:
-      name: "Pack1 info vendorid"
-    info_hardware_version:
-      name: "Pack1 info hardware version"
-    info_software_version:
-      name: "Pack1 info software version"
-    info_device_name:
-      name: "Pack1 info device name"
-    info_device_password:
-      name: "Pack1 info device password"
-    info_device_serial_number:
-      name: "Pack1 info device serial number"
-    info_device_setup_passcode:
-      name: "Pack1 info device setup passcode"
-
-switch:
-  - platform: jk_rs485_native_bms
-    jk_rs485_native_bms_id: bms1
-    charging:
-      name: "Pack1 charging"
-    discharging:
-      name: "Pack1 discharging"
-    balancing:
-      name: "Pack1 balancing"
-    heating:
-      name: "Pack1 heating"
-    disable_temperature_sensors:
-      name: "Pack1 disable temperature sensors"
-    gps_heartbeat:
-      name: "Pack1 gps heartbeat"
-    port_selection:
-      name: "Pack1 port selection"
-    display_always_on:
-      name: "Pack1 display always on"
-    special_charger:
-      name: "Pack1 special charger"
-    smart_sleep_on:
-      name: "Pack1 smart sleep on"
-    disable_pcl_module:
-      name: "Pack1 disable pcl module"
-    timed_stored_data:
-      name: "Pack1 timed stored data"
-    charging_float_mode:
-      name: "Pack1 charging float mode"
-    precharging:
-      name: "Pack1 precharging"
-    emergency:
-      name: "Pack1 emergency"
-
-number:
-  - platform: jk_rs485_native_bms
-    jk_rs485_native_bms_id: bms1
-    cell_smart_sleep_voltage:
-      name: "Pack1 cell smart sleep voltage"
-      filters:
-        - throttle: 30s
-    cell_undervoltage_protection:
-      name: "Pack1 cell undervoltage protection"
-      filters:
-        - throttle: 30s
-    cell_undervoltage_protection_recovery:
-      name: "Pack1 cell undervoltage protection recovery"
-      filters:
-        - throttle: 30s
-    cell_overvoltage_protection:
-      name: "Pack1 cell overvoltage protection"
-      filters:
-        - throttle: 30s
-    cell_overvoltage_protection_recovery:
-      name: "Pack1 cell overvoltage protection recovery"
-      filters:
-        - throttle: 30s
-    cell_balancing_trigger_voltage:
-      name: "Pack1 cell balancing trigger voltage"
-      filters:
-        - throttle: 30s
-    cell_soc100_voltage:
-      name: "Pack1 cell soc100 voltage"
-      filters:
-        - throttle: 30s
-    cell_soc0_voltage:
-      name: "Pack1 cell soc0 voltage"
-      filters:
-        - throttle: 30s
-    cell_request_charge_voltage:
-      name: "Pack1 cell request charge voltage"
-      filters:
-        - throttle: 30s
-    cell_request_float_voltage:
-      name: "Pack1 cell request float voltage"
-      filters:
-        - throttle: 30s
-    cell_power_off_voltage:
-      name: "Pack1 cell power off voltage"
-      filters:
-        - throttle: 30s
-    cell_balancing_starting_voltage:
-      name: "Pack1 cell balancing starting voltage"
-      filters:
-        - throttle: 30s
-    max_charging_current:
-      name: "Pack1 max charging current"
-      filters:
-        - throttle: 30s
-    charging_overcurrent_protection_delay:
-      name: "Pack1 charging overcurrent protection delay"
-      filters:
-        - throttle: 30s
-    charging_overcurrent_protection_recovery_delay:
-      name: "Pack1 charging overcurrent protection recovery delay"
-      filters:
-        - throttle: 30s
-    max_discharging_current:
-      name: "Pack1 max discharging current"
-      filters:
-        - throttle: 30s
-    discharging_overcurrent_protection_delay:
-      name: "Pack1 discharging overcurrent protection delay"
-      filters:
-        - throttle: 30s
-    discharging_overcurrent_protection_recovery_delay:
-      name: "Pack1 discharging overcurrent protection recovery delay"
-      filters:
-        - throttle: 30s
-    short_circuit_protection_delay:
-      name: "Pack1 short circuit protection delay"
-      filters:
-        - throttle: 30s
-    short_circuit_protection_recovery_delay:
-      name: "Pack1 short circuit protection recovery delay"
-      filters:
-        - throttle: 30s
-    max_balancing_current:
-      name: "Pack1 max balancing current"
-      filters:
-        - throttle: 30s
-    charging_overtemperature_protection:
-      name: "Pack1 charging overtemperature protection"
-      filters:
-        - throttle: 30s
-    charging_overtemperature_protection_recovery:
-      name: "Pack1 charging overtemperature protection recovery"
-      filters:
-        - throttle: 30s
-    discharging_overtemperature_protection:
-      name: "Pack1 discharging overtemperature protection"
-      filters:
-        - throttle: 30s
-    discharging_overtemperature_protection_recovery:
-      name: "Pack1 discharging overtemperature protection recovery"
-      filters:
-        - throttle: 30s
-    charging_lowtemperature_protection:
-      name: "Pack1 charging lowtemperature protection"
-      filters:
-        - throttle: 30s
-    charging_lowtemperature_protection_recovery:
-      name: "Pack1 charging lowtemperature protection recovery"
-      filters:
-        - throttle: 30s
-    mos_overtemperature_protection:
-      name: "Pack1 mos overtemperature protection"
-      filters:
-        - throttle: 30s
-    mos_overtemperature_protection_recovery:
-      name: "Pack1 mos overtemperature protection recovery"
-      filters:
-        - throttle: 30s
-    cell_count_settings:
-      name: "Pack1 cell count settings"
-      filters:
-        - throttle: 30s
-    battery_capacity_total_settings:
-      name: "Pack1 battery capacity total settings"
-      filters:
-        - throttle: 30s
-    precharging_time_from_discharge:
-      name: "Pack1 precharging time from discharge"
-      filters:
-        - throttle: 30s
-    cell_request_charge_voltage_time:
-      name: "Pack1 cell request charge voltage time"
-      filters:
-        - throttle: 30s
-    cell_request_float_voltage_time:
-      name: "Pack1 cell request float voltage time"
-      filters:
-        - throttle: 30s
-
-sensor:
   - platform: jk_rs485_native_bms
     jk_rs485_native_bms_id: bms2
     cell_voltage_01:
@@ -1366,9 +1152,43 @@ sensor:
 
 binary_sensor:
   - platform: jk_rs485_native_bms
+    jk_rs485_native_bms_id: bms1
+  - platform: jk_rs485_native_bms
     jk_rs485_native_bms_id: bms2
 
 text_sensor:
+  - platform: jk_rs485_native_bms
+    jk_rs485_native_bms_id: bms1
+    operation_status:
+      name: "Pack1 operation status"
+    errors:
+      name: "Pack1 errors"
+    battery_type:
+      name: "Pack1 battery type"
+    device_type:
+      name: "Pack1 device type"
+    software_version:
+      name: "Pack1 software version"
+    manufacturer:
+      name: "Pack1 manufacturer"
+    total_runtime_formatted:
+      name: "Pack1 total runtime formatted"
+    network_nodes_available:
+      name: "Pack1 network nodes available"
+    info_vendorid:
+      name: "Pack1 info vendorid"
+    info_hardware_version:
+      name: "Pack1 info hardware version"
+    info_software_version:
+      name: "Pack1 info software version"
+    info_device_name:
+      name: "Pack1 info device name"
+    info_device_password:
+      name: "Pack1 info device password"
+    info_device_serial_number:
+      name: "Pack1 info device serial number"
+    info_device_setup_passcode:
+      name: "Pack1 info device setup passcode"
   - platform: jk_rs485_native_bms
     jk_rs485_native_bms_id: bms2
     operation_status:
@@ -1404,6 +1224,38 @@ text_sensor:
 
 switch:
   - platform: jk_rs485_native_bms
+    jk_rs485_native_bms_id: bms1
+    charging:
+      name: "Pack1 charging"
+    discharging:
+      name: "Pack1 discharging"
+    balancing:
+      name: "Pack1 balancing"
+    heating:
+      name: "Pack1 heating"
+    disable_temperature_sensors:
+      name: "Pack1 disable temperature sensors"
+    gps_heartbeat:
+      name: "Pack1 gps heartbeat"
+    port_selection:
+      name: "Pack1 port selection"
+    display_always_on:
+      name: "Pack1 display always on"
+    special_charger:
+      name: "Pack1 special charger"
+    smart_sleep_on:
+      name: "Pack1 smart sleep on"
+    disable_pcl_module:
+      name: "Pack1 disable pcl module"
+    timed_stored_data:
+      name: "Pack1 timed stored data"
+    charging_float_mode:
+      name: "Pack1 charging float mode"
+    precharging:
+      name: "Pack1 precharging"
+    emergency:
+      name: "Pack1 emergency"
+  - platform: jk_rs485_native_bms
     jk_rs485_native_bms_id: bms2
     charging:
       name: "Pack2 charging"
@@ -1437,6 +1289,144 @@ switch:
       name: "Pack2 emergency"
 
 number:
+  - platform: jk_rs485_native_bms
+    jk_rs485_native_bms_id: bms1
+    cell_smart_sleep_voltage:
+      name: "Pack1 cell smart sleep voltage"
+      filters:
+        - throttle: 30s
+    cell_undervoltage_protection:
+      name: "Pack1 cell undervoltage protection"
+      filters:
+        - throttle: 30s
+    cell_undervoltage_protection_recovery:
+      name: "Pack1 cell undervoltage protection recovery"
+      filters:
+        - throttle: 30s
+    cell_overvoltage_protection:
+      name: "Pack1 cell overvoltage protection"
+      filters:
+        - throttle: 30s
+    cell_overvoltage_protection_recovery:
+      name: "Pack1 cell overvoltage protection recovery"
+      filters:
+        - throttle: 30s
+    cell_balancing_trigger_voltage:
+      name: "Pack1 cell balancing trigger voltage"
+      filters:
+        - throttle: 30s
+    cell_soc100_voltage:
+      name: "Pack1 cell soc100 voltage"
+      filters:
+        - throttle: 30s
+    cell_soc0_voltage:
+      name: "Pack1 cell soc0 voltage"
+      filters:
+        - throttle: 30s
+    cell_request_charge_voltage:
+      name: "Pack1 cell request charge voltage"
+      filters:
+        - throttle: 30s
+    cell_request_float_voltage:
+      name: "Pack1 cell request float voltage"
+      filters:
+        - throttle: 30s
+    cell_power_off_voltage:
+      name: "Pack1 cell power off voltage"
+      filters:
+        - throttle: 30s
+    cell_balancing_starting_voltage:
+      name: "Pack1 cell balancing starting voltage"
+      filters:
+        - throttle: 30s
+    max_charging_current:
+      name: "Pack1 max charging current"
+      filters:
+        - throttle: 30s
+    charging_overcurrent_protection_delay:
+      name: "Pack1 charging overcurrent protection delay"
+      filters:
+        - throttle: 30s
+    charging_overcurrent_protection_recovery_delay:
+      name: "Pack1 charging overcurrent protection recovery delay"
+      filters:
+        - throttle: 30s
+    max_discharging_current:
+      name: "Pack1 max discharging current"
+      filters:
+        - throttle: 30s
+    discharging_overcurrent_protection_delay:
+      name: "Pack1 discharging overcurrent protection delay"
+      filters:
+        - throttle: 30s
+    discharging_overcurrent_protection_recovery_delay:
+      name: "Pack1 discharging overcurrent protection recovery delay"
+      filters:
+        - throttle: 30s
+    short_circuit_protection_delay:
+      name: "Pack1 short circuit protection delay"
+      filters:
+        - throttle: 30s
+    short_circuit_protection_recovery_delay:
+      name: "Pack1 short circuit protection recovery delay"
+      filters:
+        - throttle: 30s
+    max_balancing_current:
+      name: "Pack1 max balancing current"
+      filters:
+        - throttle: 30s
+    charging_overtemperature_protection:
+      name: "Pack1 charging overtemperature protection"
+      filters:
+        - throttle: 30s
+    charging_overtemperature_protection_recovery:
+      name: "Pack1 charging overtemperature protection recovery"
+      filters:
+        - throttle: 30s
+    discharging_overtemperature_protection:
+      name: "Pack1 discharging overtemperature protection"
+      filters:
+        - throttle: 30s
+    discharging_overtemperature_protection_recovery:
+      name: "Pack1 discharging overtemperature protection recovery"
+      filters:
+        - throttle: 30s
+    charging_lowtemperature_protection:
+      name: "Pack1 charging lowtemperature protection"
+      filters:
+        - throttle: 30s
+    charging_lowtemperature_protection_recovery:
+      name: "Pack1 charging lowtemperature protection recovery"
+      filters:
+        - throttle: 30s
+    mos_overtemperature_protection:
+      name: "Pack1 mos overtemperature protection"
+      filters:
+        - throttle: 30s
+    mos_overtemperature_protection_recovery:
+      name: "Pack1 mos overtemperature protection recovery"
+      filters:
+        - throttle: 30s
+    cell_count_settings:
+      name: "Pack1 cell count settings"
+      filters:
+        - throttle: 30s
+    battery_capacity_total_settings:
+      name: "Pack1 battery capacity total settings"
+      filters:
+        - throttle: 30s
+    precharging_time_from_discharge:
+      name: "Pack1 precharging time from discharge"
+      filters:
+        - throttle: 30s
+    cell_request_charge_voltage_time:
+      name: "Pack1 cell request charge voltage time"
+      filters:
+        - throttle: 30s
+    cell_request_float_voltage_time:
+      name: "Pack1 cell request float voltage time"
+      filters:
+        - throttle: 30s
   - platform: jk_rs485_native_bms
     jk_rs485_native_bms_id: bms2
     cell_smart_sleep_voltage:

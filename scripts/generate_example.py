@@ -96,56 +96,30 @@ def pack_entities(pack: str, bms_id: str) -> str:
             keys = re.findall(r"(CONF_[A-Z0-9_]+)\s*:", block.group(1))
             numbers = [nmap[k] for k in keys if k in nmap]
 
-    chunks = []
-    chunks.append("sensor:")
-    chunks.append(f"  - platform: jk_rs485_native_bms")
-    chunks.append(f"    jk_rs485_native_bms_id: {bms_id}")
-    for key in cells:
-        chunks.append(entity_block(key, pack, "cell_v"))
-    for key in resists:
-        chunks.append(entity_block(key, pack, "throttle"))
-    for key in temps:
-        chunks.append(entity_block(key, pack, "throttle"))
-    for key in sensors:
-        kind = "none" if key in HOT_SENSORS else "throttle"
-        chunks.append(entity_block(key, pack, kind if kind != "none" else "hot"))
-    # rewrite hot: no filters
-    body = "\n".join(chunks)
-    # fix hot sensors accidentally throttled: handled by kind
+    def platform_block(keys: list[str], kind_fn) -> str:
+        lines = [
+            "  - platform: jk_rs485_native_bms",
+            f"    jk_rs485_native_bms_id: {bms_id}",
+        ]
+        for key in keys:
+            lines.append(entity_block(key, pack, kind_fn(key)))
+        return "\n".join(lines)
 
-    chunks.append("")
-    chunks.append("binary_sensor:")
-    chunks.append(f"  - platform: jk_rs485_native_bms")
-    chunks.append(f"    jk_rs485_native_bms_id: {bms_id}")
-    for key in binaries:
-        kind = "hot" if key in HOT_SENSORS or key.startswith("status_") else "throttle"
-        chunks.append(entity_block(key, pack, kind if kind == "throttle" else "hot"))
-
-    chunks.append("")
-    chunks.append("text_sensor:")
-    chunks.append(f"  - platform: jk_rs485_native_bms")
-    chunks.append(f"    jk_rs485_native_bms_id: {bms_id}")
-    for key in texts:
-        chunks.append(entity_block(key, pack, "hot"))
-
-    chunks.append("")
-    chunks.append("switch:")
-    chunks.append(f"  - platform: jk_rs485_native_bms")
-    chunks.append(f"    jk_rs485_native_bms_id: {bms_id}")
-    for key in switches:
-        chunks.append(entity_block(key, pack, "hot"))
-
-    chunks.append("")
-    chunks.append("number:")
-    chunks.append(f"  - platform: jk_rs485_native_bms")
-    chunks.append(f"    jk_rs485_native_bms_id: {bms_id}")
-    for key in numbers:
-        chunks.append(entity_block(key, pack, "throttle"))
-
-    # post-process: "hot" means no filters — entity_block already skips
-    text = "\n".join(chunks)
-    text = text.replace("      filters:\n        - heartbeat", "      filters:\n        - heartbeat")
-    return text.replace(entity_block.__name__, text) if False else text
+    return {
+        "sensor": platform_block(
+            cells + resists + temps + sensors,
+            lambda key: "cell_v"
+            if key in cells
+            else ("hot" if key in HOT_SENSORS else "throttle"),
+        ),
+        "binary_sensor": platform_block(
+            binaries,
+            lambda key: "hot" if key in HOT_SENSORS or key.startswith("status_") else "throttle",
+        ),
+        "text_sensor": platform_block(texts, lambda _key: "hot"),
+        "switch": platform_block(switches, lambda _key: "hot"),
+        "number": platform_block(numbers, lambda _key: "throttle"),
+    }
 
 
 def header() -> str:
@@ -222,7 +196,10 @@ def main():
     OUT.parent.mkdir(parents=True, exist_ok=True)
     one = pack_entities("Pack1", "bms1")
     two = pack_entities("Pack2", "bms2")
-    OUT.write_text(header() + one + "\n\n" + two + "\n", encoding="utf-8")
+    sections = []
+    for key in ("sensor", "binary_sensor", "text_sensor", "switch", "number"):
+        sections.append(f"{key}:\n{one[key]}\n{two[key]}")
+    OUT.write_text(header() + "\n\n".join(sections) + "\n", encoding="utf-8")
     print(f"wrote {OUT} ({OUT.stat().st_size} bytes)")
 
 
