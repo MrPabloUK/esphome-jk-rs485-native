@@ -1,0 +1,8 @@
+# Expected to fail FINAL_VALIDATE (duplicate address on the same master).
+jk_rs485_native_bms:
+  - id: bms1
+    address: 0x01
+    master_id: jk_bus
+  - id: bms2
+    address: 0x01
+    master_id: jk_bus

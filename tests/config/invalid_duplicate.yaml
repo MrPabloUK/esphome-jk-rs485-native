@@ -1,0 +1,37 @@
+substitutions:
+  name: jk-native-dup
+
+esphome:
+  name: ${name}
+
+esp32:
+  board: esp32dev
+  framework:
+    type: esp-idf
+
+logger:
+  level: INFO
+
+external_components:
+  - source:
+      type: local
+      path: ../../components
+    components: [jk_rs485_native_master, jk_rs485_native_bms]
+
+uart:
+  id: uart_jk
+  tx_pin: GPIO17
+  rx_pin: GPIO16
+  baud_rate: 115200
+
+jk_rs485_native_master:
+  id: jk_bus
+  uart_id: uart_jk
+
+jk_rs485_native_bms:
+  - id: bms1
+    address: 0x01
+    master_id: jk_bus
+  - id: bms2
+    address: 0x01
+    master_id: jk_bus

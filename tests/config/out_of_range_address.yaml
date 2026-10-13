@@ -1,0 +1,2 @@
+# address 0x00 is rejected (JK master / not a dump slave).
+# See tests/config/test_validation.py.

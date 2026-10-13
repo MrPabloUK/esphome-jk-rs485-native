@@ -1,0 +1,13 @@
+.esphome/
+.pio/
+.pioenvs/
+.piolibdeps/
+*.pyc
+__pycache__/
+.venv/
+venv/
+secrets.yaml
+.DS_Store
+tests/cpp/test_native
+tests/cpp/test_native.exe
+tests/cpp/*.o

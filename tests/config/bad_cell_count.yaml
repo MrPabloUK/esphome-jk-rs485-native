@@ -1,0 +1,2 @@
+# cell_count 25 is invalid for JK02_24S.
+# See tests/config/test_validation.py.

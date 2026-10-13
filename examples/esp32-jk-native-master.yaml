@@ -1,0 +1,1577 @@
+substitutions:
+  name: jk-native-master
+  tx_pin: GPIO17
+  rx_pin: GPIO16
+  flow_control_pin: GPIO4
+
+esphome:
+  name: ${name}
+  friendly_name: JK RS485 Native Master
+
+esp32:
+  board: esp32dev
+  framework:
+    type: esp-idf
+
+logger:
+  level: INFO
+
+api:
+ota:
+  - platform: esphome
+
+wifi:
+  ssid: "jk-native-ci"
+  password: "jk-native-ci"
+
+external_components:
+  - source:
+      type: local
+      path: ../components
+    components: [jk_rs485_native_master, jk_rs485_native_bms]
+
+uart:
+  id: uart_jk
+  tx_pin: ${tx_pin}
+  rx_pin: ${rx_pin}
+  baud_rate: 115200
+  rx_buffer_size: 512
+
+jk_rs485_native_master:
+  id: jk_bus
+  uart_id: uart_jk
+  flow_control_pin: ${flow_control_pin}
+  response_timeout: 200ms
+  inter_byte_timeout: 30ms
+  offline_retry_interval: 5s
+  min_command_gap: 150ms
+  turnaround: 25ms
+  debug_dump_frames: false
+  poll:
+    cell_info: 1s
+    settings: 30s
+    device_info: 1h
+
+jk_rs485_native_bms:
+  - id: bms1
+    address: 0x01
+    master_id: jk_bus
+    protocol_version: JK02_32S
+    cell_count: 16
+  - id: bms2
+    address: 0x02
+    master_id: jk_bus
+    protocol_version: JK02_32S
+    cell_count: 16
+
+sensor:
+  - platform: jk_rs485_native_bms
+    jk_rs485_native_bms_id: bms1
+    cell_voltage_01:
+      name: "Pack1 cell voltage 01"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_02:
+      name: "Pack1 cell voltage 02"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_03:
+      name: "Pack1 cell voltage 03"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_04:
+      name: "Pack1 cell voltage 04"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_05:
+      name: "Pack1 cell voltage 05"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_06:
+      name: "Pack1 cell voltage 06"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_07:
+      name: "Pack1 cell voltage 07"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_08:
+      name: "Pack1 cell voltage 08"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_09:
+      name: "Pack1 cell voltage 09"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_10:
+      name: "Pack1 cell voltage 10"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_11:
+      name: "Pack1 cell voltage 11"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_12:
+      name: "Pack1 cell voltage 12"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_13:
+      name: "Pack1 cell voltage 13"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_14:
+      name: "Pack1 cell voltage 14"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_15:
+      name: "Pack1 cell voltage 15"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_16:
+      name: "Pack1 cell voltage 16"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_17:
+      name: "Pack1 cell voltage 17"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_18:
+      name: "Pack1 cell voltage 18"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_19:
+      name: "Pack1 cell voltage 19"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_20:
+      name: "Pack1 cell voltage 20"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_21:
+      name: "Pack1 cell voltage 21"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_22:
+      name: "Pack1 cell voltage 22"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_23:
+      name: "Pack1 cell voltage 23"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_24:
+      name: "Pack1 cell voltage 24"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_25:
+      name: "Pack1 cell voltage 25"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_26:
+      name: "Pack1 cell voltage 26"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_27:
+      name: "Pack1 cell voltage 27"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_28:
+      name: "Pack1 cell voltage 28"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_29:
+      name: "Pack1 cell voltage 29"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_30:
+      name: "Pack1 cell voltage 30"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_31:
+      name: "Pack1 cell voltage 31"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_32:
+      name: "Pack1 cell voltage 32"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_resistance_01:
+      name: "Pack1 cell resistance 01"
+      filters:
+        - throttle: 30s
+    cell_resistance_02:
+      name: "Pack1 cell resistance 02"
+      filters:
+        - throttle: 30s
+    cell_resistance_03:
+      name: "Pack1 cell resistance 03"
+      filters:
+        - throttle: 30s
+    cell_resistance_04:
+      name: "Pack1 cell resistance 04"
+      filters:
+        - throttle: 30s
+    cell_resistance_05:
+      name: "Pack1 cell resistance 05"
+      filters:
+        - throttle: 30s
+    cell_resistance_06:
+      name: "Pack1 cell resistance 06"
+      filters:
+        - throttle: 30s
+    cell_resistance_07:
+      name: "Pack1 cell resistance 07"
+      filters:
+        - throttle: 30s
+    cell_resistance_08:
+      name: "Pack1 cell resistance 08"
+      filters:
+        - throttle: 30s
+    cell_resistance_09:
+      name: "Pack1 cell resistance 09"
+      filters:
+        - throttle: 30s
+    cell_resistance_10:
+      name: "Pack1 cell resistance 10"
+      filters:
+        - throttle: 30s
+    cell_resistance_11:
+      name: "Pack1 cell resistance 11"
+      filters:
+        - throttle: 30s
+    cell_resistance_12:
+      name: "Pack1 cell resistance 12"
+      filters:
+        - throttle: 30s
+    cell_resistance_13:
+      name: "Pack1 cell resistance 13"
+      filters:
+        - throttle: 30s
+    cell_resistance_14:
+      name: "Pack1 cell resistance 14"
+      filters:
+        - throttle: 30s
+    cell_resistance_15:
+      name: "Pack1 cell resistance 15"
+      filters:
+        - throttle: 30s
+    cell_resistance_16:
+      name: "Pack1 cell resistance 16"
+      filters:
+        - throttle: 30s
+    cell_resistance_17:
+      name: "Pack1 cell resistance 17"
+      filters:
+        - throttle: 30s
+    cell_resistance_18:
+      name: "Pack1 cell resistance 18"
+      filters:
+        - throttle: 30s
+    cell_resistance_19:
+      name: "Pack1 cell resistance 19"
+      filters:
+        - throttle: 30s
+    cell_resistance_20:
+      name: "Pack1 cell resistance 20"
+      filters:
+        - throttle: 30s
+    cell_resistance_21:
+      name: "Pack1 cell resistance 21"
+      filters:
+        - throttle: 30s
+    cell_resistance_22:
+      name: "Pack1 cell resistance 22"
+      filters:
+        - throttle: 30s
+    cell_resistance_23:
+      name: "Pack1 cell resistance 23"
+      filters:
+        - throttle: 30s
+    cell_resistance_24:
+      name: "Pack1 cell resistance 24"
+      filters:
+        - throttle: 30s
+    cell_resistance_25:
+      name: "Pack1 cell resistance 25"
+      filters:
+        - throttle: 30s
+    cell_resistance_26:
+      name: "Pack1 cell resistance 26"
+      filters:
+        - throttle: 30s
+    cell_resistance_27:
+      name: "Pack1 cell resistance 27"
+      filters:
+        - throttle: 30s
+    cell_resistance_28:
+      name: "Pack1 cell resistance 28"
+      filters:
+        - throttle: 30s
+    cell_resistance_29:
+      name: "Pack1 cell resistance 29"
+      filters:
+        - throttle: 30s
+    cell_resistance_30:
+      name: "Pack1 cell resistance 30"
+      filters:
+        - throttle: 30s
+    cell_resistance_31:
+      name: "Pack1 cell resistance 31"
+      filters:
+        - throttle: 30s
+    cell_resistance_32:
+      name: "Pack1 cell resistance 32"
+      filters:
+        - throttle: 30s
+    temperature_sensor_1:
+      name: "Pack1 temperature sensor 1"
+      filters:
+        - throttle: 30s
+    temperature_sensor_2:
+      name: "Pack1 temperature sensor 2"
+      filters:
+        - throttle: 30s
+    temperature_sensor_3:
+      name: "Pack1 temperature sensor 3"
+      filters:
+        - throttle: 30s
+    temperature_sensor_4:
+      name: "Pack1 temperature sensor 4"
+      filters:
+        - throttle: 30s
+    temperature_sensor_5:
+      name: "Pack1 temperature sensor 5"
+      filters:
+        - throttle: 30s
+    balancing_direction:
+      name: "Pack1 balancing direction"
+      filters:
+        - throttle: 30s
+    cell_voltage_min:
+      name: "Pack1 cell voltage min"
+      filters:
+        - throttle: 30s
+    cell_voltage_max:
+      name: "Pack1 cell voltage max"
+      filters:
+        - throttle: 30s
+    cell_voltage_min_cell_number:
+      name: "Pack1 cell voltage min cell number"
+      filters:
+        - throttle: 30s
+    cell_voltage_max_cell_number:
+      name: "Pack1 cell voltage max cell number"
+      filters:
+        - throttle: 30s
+    cell_delta_voltage:
+      name: "Pack1 cell delta voltage"
+      filters:
+        - throttle: 30s
+    cell_average_voltage:
+      name: "Pack1 cell average voltage"
+      filters:
+        - throttle: 30s
+    cell_resistance_min:
+      name: "Pack1 cell resistance min"
+      filters:
+        - throttle: 30s
+    cell_resistance_max:
+      name: "Pack1 cell resistance max"
+      filters:
+        - throttle: 30s
+    cell_resistance_min_cell_number:
+      name: "Pack1 cell resistance min cell number"
+      filters:
+        - throttle: 30s
+    cell_resistance_max_cell_number:
+      name: "Pack1 cell resistance max cell number"
+      filters:
+        - throttle: 30s
+    cell_count_real:
+      name: "Pack1 cell count real"
+      filters:
+        - throttle: 30s
+    temperature_powertube:
+      name: "Pack1 temperature powertube"
+      filters:
+        - throttle: 30s
+    battery_voltage:
+      name: "Pack1 battery voltage"
+    battery_current:
+      name: "Pack1 battery current"
+    battery_power:
+      name: "Pack1 battery power"
+    battery_power_charging:
+      name: "Pack1 battery power charging"
+    battery_power_discharging:
+      name: "Pack1 battery power discharging"
+    battery_capacity_remaining:
+      name: "Pack1 battery capacity remaining"
+      filters:
+        - throttle: 30s
+    battery_capacity_remaining_derived:
+      name: "Pack1 battery capacity remaining derived"
+      filters:
+        - throttle: 30s
+    temperature_sensors:
+      name: "Pack1 temperature sensors"
+      filters:
+        - throttle: 30s
+    charging_cycles:
+      name: "Pack1 charging cycles"
+      filters:
+        - throttle: 30s
+    battery_capacity_total_charging_cycle:
+      name: "Pack1 battery capacity total charging cycle"
+      filters:
+        - throttle: 30s
+    battery_strings:
+      name: "Pack1 battery strings"
+      filters:
+        - throttle: 30s
+    errors_bitmask:
+      name: "Pack1 errors bitmask"
+      filters:
+        - throttle: 30s
+    operation_mode_bitmask:
+      name: "Pack1 operation mode bitmask"
+      filters:
+        - throttle: 30s
+    cell_pressure_difference_protection:
+      name: "Pack1 cell pressure difference protection"
+      filters:
+        - throttle: 30s
+    balancing_opening_pressure_difference:
+      name: "Pack1 balancing opening pressure difference"
+      filters:
+        - throttle: 30s
+    powertube_temperature_protection:
+      name: "Pack1 powertube temperature protection"
+      filters:
+        - throttle: 30s
+    powertube_temperature_protection_recovery:
+      name: "Pack1 powertube temperature protection recovery"
+      filters:
+        - throttle: 30s
+    temperature_sensor_temperature_recovery:
+      name: "Pack1 temperature sensor temperature recovery"
+      filters:
+        - throttle: 30s
+    charging_high_temperature_protection:
+      name: "Pack1 charging high temperature protection"
+      filters:
+        - throttle: 30s
+    discharging_high_temperature_protection:
+      name: "Pack1 discharging high temperature protection"
+      filters:
+        - throttle: 30s
+    charging_low_temperature_protection:
+      name: "Pack1 charging low temperature protection"
+      filters:
+        - throttle: 30s
+    charging_low_temperature_recovery:
+      name: "Pack1 charging low temperature recovery"
+      filters:
+        - throttle: 30s
+    discharging_low_temperature_protection:
+      name: "Pack1 discharging low temperature protection"
+      filters:
+        - throttle: 30s
+    discharging_low_temperature_recovery:
+      name: "Pack1 discharging low temperature recovery"
+      filters:
+        - throttle: 30s
+    current_calibration:
+      name: "Pack1 current calibration"
+      filters:
+        - throttle: 30s
+    device_address:
+      name: "Pack1 device address"
+      filters:
+        - throttle: 30s
+    sleep_wait_time:
+      name: "Pack1 sleep wait time"
+      filters:
+        - throttle: 30s
+    alarm_low_volume:
+      name: "Pack1 alarm low volume"
+      filters:
+        - throttle: 30s
+    manufacturing_date:
+      name: "Pack1 manufacturing date"
+      filters:
+        - throttle: 30s
+    battery_total_runtime:
+      name: "Pack1 battery total runtime"
+      filters:
+        - throttle: 30s
+    balancing_current:
+      name: "Pack1 balancing current"
+      filters:
+        - throttle: 30s
+    max_discharging_current:
+      name: "Pack1 max discharging current"
+      filters:
+        - throttle: 30s
+    start_current_calibration:
+      name: "Pack1 start current calibration"
+      filters:
+        - throttle: 30s
+    actual_battery_capacity:
+      name: "Pack1 actual battery capacity"
+      filters:
+        - throttle: 30s
+    protocol_version:
+      name: "Pack1 protocol version"
+      filters:
+        - throttle: 30s
+    battery_capacity_state_of_charge:
+      name: "Pack1 battery capacity state of charge"
+    battery_soh_valuation:
+      name: "Pack1 battery soh valuation"
+      filters:
+        - throttle: 30s
+    battery_total_alarms_count:
+      name: "Pack1 battery total alarms count"
+      filters:
+        - throttle: 30s
+    battery_total_alarms_active:
+      name: "Pack1 battery total alarms active"
+      filters:
+        - throttle: 30s
+    emergency_time_countdown:
+      name: "Pack1 emergency time countdown"
+      filters:
+        - throttle: 30s
+    uart1_protocol_number:
+      name: "Pack1 uart1 protocol number"
+      filters:
+        - throttle: 30s
+    uart2_protocol_number:
+      name: "Pack1 uart2 protocol number"
+      filters:
+        - throttle: 30s
+    discharging_overcurrent_protection_release_time:
+      name: "Pack1 discharging overcurrent protection release time"
+      filters:
+        - throttle: 30s
+    discharging_short_circuit_protection_release_time:
+      name: "Pack1 discharging short circuit protection release time"
+      filters:
+        - throttle: 30s
+    charging_overcurrent_protection_release_time:
+      name: "Pack1 charging overcurrent protection release time"
+      filters:
+        - throttle: 30s
+    charging_short_circuit_protection_release_time:
+      name: "Pack1 charging short circuit protection release time"
+      filters:
+        - throttle: 30s
+    cell_undervoltage_protection_release_time:
+      name: "Pack1 cell undervoltage protection release time"
+      filters:
+        - throttle: 30s
+    cell_overvoltage_protection_release_time:
+      name: "Pack1 cell overvoltage protection release time"
+      filters:
+        - throttle: 30s
+
+binary_sensor:
+  - platform: jk_rs485_native_bms
+    jk_rs485_native_bms_id: bms1
+
+text_sensor:
+  - platform: jk_rs485_native_bms
+    jk_rs485_native_bms_id: bms1
+    operation_status:
+      name: "Pack1 operation status"
+    errors:
+      name: "Pack1 errors"
+    battery_type:
+      name: "Pack1 battery type"
+    device_type:
+      name: "Pack1 device type"
+    software_version:
+      name: "Pack1 software version"
+    manufacturer:
+      name: "Pack1 manufacturer"
+    total_runtime_formatted:
+      name: "Pack1 total runtime formatted"
+    network_nodes_available:
+      name: "Pack1 network nodes available"
+    info_vendorid:
+      name: "Pack1 info vendorid"
+    info_hardware_version:
+      name: "Pack1 info hardware version"
+    info_software_version:
+      name: "Pack1 info software version"
+    info_device_name:
+      name: "Pack1 info device name"
+    info_device_password:
+      name: "Pack1 info device password"
+    info_device_serial_number:
+      name: "Pack1 info device serial number"
+    info_device_setup_passcode:
+      name: "Pack1 info device setup passcode"
+
+switch:
+  - platform: jk_rs485_native_bms
+    jk_rs485_native_bms_id: bms1
+    charging:
+      name: "Pack1 charging"
+    discharging:
+      name: "Pack1 discharging"
+    balancing:
+      name: "Pack1 balancing"
+    heating:
+      name: "Pack1 heating"
+    disable_temperature_sensors:
+      name: "Pack1 disable temperature sensors"
+    gps_heartbeat:
+      name: "Pack1 gps heartbeat"
+    port_selection:
+      name: "Pack1 port selection"
+    display_always_on:
+      name: "Pack1 display always on"
+    special_charger:
+      name: "Pack1 special charger"
+    smart_sleep_on:
+      name: "Pack1 smart sleep on"
+    disable_pcl_module:
+      name: "Pack1 disable pcl module"
+    timed_stored_data:
+      name: "Pack1 timed stored data"
+    charging_float_mode:
+      name: "Pack1 charging float mode"
+    precharging:
+      name: "Pack1 precharging"
+    emergency:
+      name: "Pack1 emergency"
+
+number:
+  - platform: jk_rs485_native_bms
+    jk_rs485_native_bms_id: bms1
+    cell_smart_sleep_voltage:
+      name: "Pack1 cell smart sleep voltage"
+      filters:
+        - throttle: 30s
+    cell_undervoltage_protection:
+      name: "Pack1 cell undervoltage protection"
+      filters:
+        - throttle: 30s
+    cell_undervoltage_protection_recovery:
+      name: "Pack1 cell undervoltage protection recovery"
+      filters:
+        - throttle: 30s
+    cell_overvoltage_protection:
+      name: "Pack1 cell overvoltage protection"
+      filters:
+        - throttle: 30s
+    cell_overvoltage_protection_recovery:
+      name: "Pack1 cell overvoltage protection recovery"
+      filters:
+        - throttle: 30s
+    cell_balancing_trigger_voltage:
+      name: "Pack1 cell balancing trigger voltage"
+      filters:
+        - throttle: 30s
+    cell_soc100_voltage:
+      name: "Pack1 cell soc100 voltage"
+      filters:
+        - throttle: 30s
+    cell_soc0_voltage:
+      name: "Pack1 cell soc0 voltage"
+      filters:
+        - throttle: 30s
+    cell_request_charge_voltage:
+      name: "Pack1 cell request charge voltage"
+      filters:
+        - throttle: 30s
+    cell_request_float_voltage:
+      name: "Pack1 cell request float voltage"
+      filters:
+        - throttle: 30s
+    cell_power_off_voltage:
+      name: "Pack1 cell power off voltage"
+      filters:
+        - throttle: 30s
+    cell_balancing_starting_voltage:
+      name: "Pack1 cell balancing starting voltage"
+      filters:
+        - throttle: 30s
+    max_charging_current:
+      name: "Pack1 max charging current"
+      filters:
+        - throttle: 30s
+    charging_overcurrent_protection_delay:
+      name: "Pack1 charging overcurrent protection delay"
+      filters:
+        - throttle: 30s
+    charging_overcurrent_protection_recovery_delay:
+      name: "Pack1 charging overcurrent protection recovery delay"
+      filters:
+        - throttle: 30s
+    max_discharging_current:
+      name: "Pack1 max discharging current"
+      filters:
+        - throttle: 30s
+    discharging_overcurrent_protection_delay:
+      name: "Pack1 discharging overcurrent protection delay"
+      filters:
+        - throttle: 30s
+    discharging_overcurrent_protection_recovery_delay:
+      name: "Pack1 discharging overcurrent protection recovery delay"
+      filters:
+        - throttle: 30s
+    short_circuit_protection_delay:
+      name: "Pack1 short circuit protection delay"
+      filters:
+        - throttle: 30s
+    short_circuit_protection_recovery_delay:
+      name: "Pack1 short circuit protection recovery delay"
+      filters:
+        - throttle: 30s
+    max_balancing_current:
+      name: "Pack1 max balancing current"
+      filters:
+        - throttle: 30s
+    charging_overtemperature_protection:
+      name: "Pack1 charging overtemperature protection"
+      filters:
+        - throttle: 30s
+    charging_overtemperature_protection_recovery:
+      name: "Pack1 charging overtemperature protection recovery"
+      filters:
+        - throttle: 30s
+    discharging_overtemperature_protection:
+      name: "Pack1 discharging overtemperature protection"
+      filters:
+        - throttle: 30s
+    discharging_overtemperature_protection_recovery:
+      name: "Pack1 discharging overtemperature protection recovery"
+      filters:
+        - throttle: 30s
+    charging_lowtemperature_protection:
+      name: "Pack1 charging lowtemperature protection"
+      filters:
+        - throttle: 30s
+    charging_lowtemperature_protection_recovery:
+      name: "Pack1 charging lowtemperature protection recovery"
+      filters:
+        - throttle: 30s
+    mos_overtemperature_protection:
+      name: "Pack1 mos overtemperature protection"
+      filters:
+        - throttle: 30s
+    mos_overtemperature_protection_recovery:
+      name: "Pack1 mos overtemperature protection recovery"
+      filters:
+        - throttle: 30s
+    cell_count_settings:
+      name: "Pack1 cell count settings"
+      filters:
+        - throttle: 30s
+    battery_capacity_total_settings:
+      name: "Pack1 battery capacity total settings"
+      filters:
+        - throttle: 30s
+    precharging_time_from_discharge:
+      name: "Pack1 precharging time from discharge"
+      filters:
+        - throttle: 30s
+    cell_request_charge_voltage_time:
+      name: "Pack1 cell request charge voltage time"
+      filters:
+        - throttle: 30s
+    cell_request_float_voltage_time:
+      name: "Pack1 cell request float voltage time"
+      filters:
+        - throttle: 30s
+
+sensor:
+  - platform: jk_rs485_native_bms
+    jk_rs485_native_bms_id: bms2
+    cell_voltage_01:
+      name: "Pack2 cell voltage 01"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_02:
+      name: "Pack2 cell voltage 02"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_03:
+      name: "Pack2 cell voltage 03"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_04:
+      name: "Pack2 cell voltage 04"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_05:
+      name: "Pack2 cell voltage 05"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_06:
+      name: "Pack2 cell voltage 06"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_07:
+      name: "Pack2 cell voltage 07"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_08:
+      name: "Pack2 cell voltage 08"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_09:
+      name: "Pack2 cell voltage 09"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_10:
+      name: "Pack2 cell voltage 10"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_11:
+      name: "Pack2 cell voltage 11"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_12:
+      name: "Pack2 cell voltage 12"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_13:
+      name: "Pack2 cell voltage 13"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_14:
+      name: "Pack2 cell voltage 14"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_15:
+      name: "Pack2 cell voltage 15"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_16:
+      name: "Pack2 cell voltage 16"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_17:
+      name: "Pack2 cell voltage 17"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_18:
+      name: "Pack2 cell voltage 18"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_19:
+      name: "Pack2 cell voltage 19"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_20:
+      name: "Pack2 cell voltage 20"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_21:
+      name: "Pack2 cell voltage 21"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_22:
+      name: "Pack2 cell voltage 22"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_23:
+      name: "Pack2 cell voltage 23"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_24:
+      name: "Pack2 cell voltage 24"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_25:
+      name: "Pack2 cell voltage 25"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_26:
+      name: "Pack2 cell voltage 26"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_27:
+      name: "Pack2 cell voltage 27"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_28:
+      name: "Pack2 cell voltage 28"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_29:
+      name: "Pack2 cell voltage 29"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_30:
+      name: "Pack2 cell voltage 30"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_31:
+      name: "Pack2 cell voltage 31"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_voltage_32:
+      name: "Pack2 cell voltage 32"
+      filters:
+        - delta: 0.002
+        - heartbeat: 10s
+    cell_resistance_01:
+      name: "Pack2 cell resistance 01"
+      filters:
+        - throttle: 30s
+    cell_resistance_02:
+      name: "Pack2 cell resistance 02"
+      filters:
+        - throttle: 30s
+    cell_resistance_03:
+      name: "Pack2 cell resistance 03"
+      filters:
+        - throttle: 30s
+    cell_resistance_04:
+      name: "Pack2 cell resistance 04"
+      filters:
+        - throttle: 30s
+    cell_resistance_05:
+      name: "Pack2 cell resistance 05"
+      filters:
+        - throttle: 30s
+    cell_resistance_06:
+      name: "Pack2 cell resistance 06"
+      filters:
+        - throttle: 30s
+    cell_resistance_07:
+      name: "Pack2 cell resistance 07"
+      filters:
+        - throttle: 30s
+    cell_resistance_08:
+      name: "Pack2 cell resistance 08"
+      filters:
+        - throttle: 30s
+    cell_resistance_09:
+      name: "Pack2 cell resistance 09"
+      filters:
+        - throttle: 30s
+    cell_resistance_10:
+      name: "Pack2 cell resistance 10"
+      filters:
+        - throttle: 30s
+    cell_resistance_11:
+      name: "Pack2 cell resistance 11"
+      filters:
+        - throttle: 30s
+    cell_resistance_12:
+      name: "Pack2 cell resistance 12"
+      filters:
+        - throttle: 30s
+    cell_resistance_13:
+      name: "Pack2 cell resistance 13"
+      filters:
+        - throttle: 30s
+    cell_resistance_14:
+      name: "Pack2 cell resistance 14"
+      filters:
+        - throttle: 30s
+    cell_resistance_15:
+      name: "Pack2 cell resistance 15"
+      filters:
+        - throttle: 30s
+    cell_resistance_16:
+      name: "Pack2 cell resistance 16"
+      filters:
+        - throttle: 30s
+    cell_resistance_17:
+      name: "Pack2 cell resistance 17"
+      filters:
+        - throttle: 30s
+    cell_resistance_18:
+      name: "Pack2 cell resistance 18"
+      filters:
+        - throttle: 30s
+    cell_resistance_19:
+      name: "Pack2 cell resistance 19"
+      filters:
+        - throttle: 30s
+    cell_resistance_20:
+      name: "Pack2 cell resistance 20"
+      filters:
+        - throttle: 30s
+    cell_resistance_21:
+      name: "Pack2 cell resistance 21"
+      filters:
+        - throttle: 30s
+    cell_resistance_22:
+      name: "Pack2 cell resistance 22"
+      filters:
+        - throttle: 30s
+    cell_resistance_23:
+      name: "Pack2 cell resistance 23"
+      filters:
+        - throttle: 30s
+    cell_resistance_24:
+      name: "Pack2 cell resistance 24"
+      filters:
+        - throttle: 30s
+    cell_resistance_25:
+      name: "Pack2 cell resistance 25"
+      filters:
+        - throttle: 30s
+    cell_resistance_26:
+      name: "Pack2 cell resistance 26"
+      filters:
+        - throttle: 30s
+    cell_resistance_27:
+      name: "Pack2 cell resistance 27"
+      filters:
+        - throttle: 30s
+    cell_resistance_28:
+      name: "Pack2 cell resistance 28"
+      filters:
+        - throttle: 30s
+    cell_resistance_29:
+      name: "Pack2 cell resistance 29"
+      filters:
+        - throttle: 30s
+    cell_resistance_30:
+      name: "Pack2 cell resistance 30"
+      filters:
+        - throttle: 30s
+    cell_resistance_31:
+      name: "Pack2 cell resistance 31"
+      filters:
+        - throttle: 30s
+    cell_resistance_32:
+      name: "Pack2 cell resistance 32"
+      filters:
+        - throttle: 30s
+    temperature_sensor_1:
+      name: "Pack2 temperature sensor 1"
+      filters:
+        - throttle: 30s
+    temperature_sensor_2:
+      name: "Pack2 temperature sensor 2"
+      filters:
+        - throttle: 30s
+    temperature_sensor_3:
+      name: "Pack2 temperature sensor 3"
+      filters:
+        - throttle: 30s
+    temperature_sensor_4:
+      name: "Pack2 temperature sensor 4"
+      filters:
+        - throttle: 30s
+    temperature_sensor_5:
+      name: "Pack2 temperature sensor 5"
+      filters:
+        - throttle: 30s
+    balancing_direction:
+      name: "Pack2 balancing direction"
+      filters:
+        - throttle: 30s
+    cell_voltage_min:
+      name: "Pack2 cell voltage min"
+      filters:
+        - throttle: 30s
+    cell_voltage_max:
+      name: "Pack2 cell voltage max"
+      filters:
+        - throttle: 30s
+    cell_voltage_min_cell_number:
+      name: "Pack2 cell voltage min cell number"
+      filters:
+        - throttle: 30s
+    cell_voltage_max_cell_number:
+      name: "Pack2 cell voltage max cell number"
+      filters:
+        - throttle: 30s
+    cell_delta_voltage:
+      name: "Pack2 cell delta voltage"
+      filters:
+        - throttle: 30s
+    cell_average_voltage:
+      name: "Pack2 cell average voltage"
+      filters:
+        - throttle: 30s
+    cell_resistance_min:
+      name: "Pack2 cell resistance min"
+      filters:
+        - throttle: 30s
+    cell_resistance_max:
+      name: "Pack2 cell resistance max"
+      filters:
+        - throttle: 30s
+    cell_resistance_min_cell_number:
+      name: "Pack2 cell resistance min cell number"
+      filters:
+        - throttle: 30s
+    cell_resistance_max_cell_number:
+      name: "Pack2 cell resistance max cell number"
+      filters:
+        - throttle: 30s
+    cell_count_real:
+      name: "Pack2 cell count real"
+      filters:
+        - throttle: 30s
+    temperature_powertube:
+      name: "Pack2 temperature powertube"
+      filters:
+        - throttle: 30s
+    battery_voltage:
+      name: "Pack2 battery voltage"
+    battery_current:
+      name: "Pack2 battery current"
+    battery_power:
+      name: "Pack2 battery power"
+    battery_power_charging:
+      name: "Pack2 battery power charging"
+    battery_power_discharging:
+      name: "Pack2 battery power discharging"
+    battery_capacity_remaining:
+      name: "Pack2 battery capacity remaining"
+      filters:
+        - throttle: 30s
+    battery_capacity_remaining_derived:
+      name: "Pack2 battery capacity remaining derived"
+      filters:
+        - throttle: 30s
+    temperature_sensors:
+      name: "Pack2 temperature sensors"
+      filters:
+        - throttle: 30s
+    charging_cycles:
+      name: "Pack2 charging cycles"
+      filters:
+        - throttle: 30s
+    battery_capacity_total_charging_cycle:
+      name: "Pack2 battery capacity total charging cycle"
+      filters:
+        - throttle: 30s
+    battery_strings:
+      name: "Pack2 battery strings"
+      filters:
+        - throttle: 30s
+    errors_bitmask:
+      name: "Pack2 errors bitmask"
+      filters:
+        - throttle: 30s
+    operation_mode_bitmask:
+      name: "Pack2 operation mode bitmask"
+      filters:
+        - throttle: 30s
+    cell_pressure_difference_protection:
+      name: "Pack2 cell pressure difference protection"
+      filters:
+        - throttle: 30s
+    balancing_opening_pressure_difference:
+      name: "Pack2 balancing opening pressure difference"
+      filters:
+        - throttle: 30s
+    powertube_temperature_protection:
+      name: "Pack2 powertube temperature protection"
+      filters:
+        - throttle: 30s
+    powertube_temperature_protection_recovery:
+      name: "Pack2 powertube temperature protection recovery"
+      filters:
+        - throttle: 30s
+    temperature_sensor_temperature_recovery:
+      name: "Pack2 temperature sensor temperature recovery"
+      filters:
+        - throttle: 30s
+    charging_high_temperature_protection:
+      name: "Pack2 charging high temperature protection"
+      filters:
+        - throttle: 30s
+    discharging_high_temperature_protection:
+      name: "Pack2 discharging high temperature protection"
+      filters:
+        - throttle: 30s
+    charging_low_temperature_protection:
+      name: "Pack2 charging low temperature protection"
+      filters:
+        - throttle: 30s
+    charging_low_temperature_recovery:
+      name: "Pack2 charging low temperature recovery"
+      filters:
+        - throttle: 30s
+    discharging_low_temperature_protection:
+      name: "Pack2 discharging low temperature protection"
+      filters:
+        - throttle: 30s
+    discharging_low_temperature_recovery:
+      name: "Pack2 discharging low temperature recovery"
+      filters:
+        - throttle: 30s
+    current_calibration:
+      name: "Pack2 current calibration"
+      filters:
+        - throttle: 30s
+    device_address:
+      name: "Pack2 device address"
+      filters:
+        - throttle: 30s
+    sleep_wait_time:
+      name: "Pack2 sleep wait time"
+      filters:
+        - throttle: 30s
+    alarm_low_volume:
+      name: "Pack2 alarm low volume"
+      filters:
+        - throttle: 30s
+    manufacturing_date:
+      name: "Pack2 manufacturing date"
+      filters:
+        - throttle: 30s
+    battery_total_runtime:
+      name: "Pack2 battery total runtime"
+      filters:
+        - throttle: 30s
+    balancing_current:
+      name: "Pack2 balancing current"
+      filters:
+        - throttle: 30s
+    max_discharging_current:
+      name: "Pack2 max discharging current"
+      filters:
+        - throttle: 30s
+    start_current_calibration:
+      name: "Pack2 start current calibration"
+      filters:
+        - throttle: 30s
+    actual_battery_capacity:
+      name: "Pack2 actual battery capacity"
+      filters:
+        - throttle: 30s
+    protocol_version:
+      name: "Pack2 protocol version"
+      filters:
+        - throttle: 30s
+    battery_capacity_state_of_charge:
+      name: "Pack2 battery capacity state of charge"
+    battery_soh_valuation:
+      name: "Pack2 battery soh valuation"
+      filters:
+        - throttle: 30s
+    battery_total_alarms_count:
+      name: "Pack2 battery total alarms count"
+      filters:
+        - throttle: 30s
+    battery_total_alarms_active:
+      name: "Pack2 battery total alarms active"
+      filters:
+        - throttle: 30s
+    emergency_time_countdown:
+      name: "Pack2 emergency time countdown"
+      filters:
+        - throttle: 30s
+    uart1_protocol_number:
+      name: "Pack2 uart1 protocol number"
+      filters:
+        - throttle: 30s
+    uart2_protocol_number:
+      name: "Pack2 uart2 protocol number"
+      filters:
+        - throttle: 30s
+    discharging_overcurrent_protection_release_time:
+      name: "Pack2 discharging overcurrent protection release time"
+      filters:
+        - throttle: 30s
+    discharging_short_circuit_protection_release_time:
+      name: "Pack2 discharging short circuit protection release time"
+      filters:
+        - throttle: 30s
+    charging_overcurrent_protection_release_time:
+      name: "Pack2 charging overcurrent protection release time"
+      filters:
+        - throttle: 30s
+    charging_short_circuit_protection_release_time:
+      name: "Pack2 charging short circuit protection release time"
+      filters:
+        - throttle: 30s
+    cell_undervoltage_protection_release_time:
+      name: "Pack2 cell undervoltage protection release time"
+      filters:
+        - throttle: 30s
+    cell_overvoltage_protection_release_time:
+      name: "Pack2 cell overvoltage protection release time"
+      filters:
+        - throttle: 30s
+
+binary_sensor:
+  - platform: jk_rs485_native_bms
+    jk_rs485_native_bms_id: bms2
+
+text_sensor:
+  - platform: jk_rs485_native_bms
+    jk_rs485_native_bms_id: bms2
+    operation_status:
+      name: "Pack2 operation status"
+    errors:
+      name: "Pack2 errors"
+    battery_type:
+      name: "Pack2 battery type"
+    device_type:
+      name: "Pack2 device type"
+    software_version:
+      name: "Pack2 software version"
+    manufacturer:
+      name: "Pack2 manufacturer"
+    total_runtime_formatted:
+      name: "Pack2 total runtime formatted"
+    network_nodes_available:
+      name: "Pack2 network nodes available"
+    info_vendorid:
+      name: "Pack2 info vendorid"
+    info_hardware_version:
+      name: "Pack2 info hardware version"
+    info_software_version:
+      name: "Pack2 info software version"
+    info_device_name:
+      name: "Pack2 info device name"
+    info_device_password:
+      name: "Pack2 info device password"
+    info_device_serial_number:
+      name: "Pack2 info device serial number"
+    info_device_setup_passcode:
+      name: "Pack2 info device setup passcode"
+
+switch:
+  - platform: jk_rs485_native_bms
+    jk_rs485_native_bms_id: bms2
+    charging:
+      name: "Pack2 charging"
+    discharging:
+      name: "Pack2 discharging"
+    balancing:
+      name: "Pack2 balancing"
+    heating:
+      name: "Pack2 heating"
+    disable_temperature_sensors:
+      name: "Pack2 disable temperature sensors"
+    gps_heartbeat:
+      name: "Pack2 gps heartbeat"
+    port_selection:
+      name: "Pack2 port selection"
+    display_always_on:
+      name: "Pack2 display always on"
+    special_charger:
+      name: "Pack2 special charger"
+    smart_sleep_on:
+      name: "Pack2 smart sleep on"
+    disable_pcl_module:
+      name: "Pack2 disable pcl module"
+    timed_stored_data:
+      name: "Pack2 timed stored data"
+    charging_float_mode:
+      name: "Pack2 charging float mode"
+    precharging:
+      name: "Pack2 precharging"
+    emergency:
+      name: "Pack2 emergency"
+
+number:
+  - platform: jk_rs485_native_bms
+    jk_rs485_native_bms_id: bms2
+    cell_smart_sleep_voltage:
+      name: "Pack2 cell smart sleep voltage"
+      filters:
+        - throttle: 30s
+    cell_undervoltage_protection:
+      name: "Pack2 cell undervoltage protection"
+      filters:
+        - throttle: 30s
+    cell_undervoltage_protection_recovery:
+      name: "Pack2 cell undervoltage protection recovery"
+      filters:
+        - throttle: 30s
+    cell_overvoltage_protection:
+      name: "Pack2 cell overvoltage protection"
+      filters:
+        - throttle: 30s
+    cell_overvoltage_protection_recovery:
+      name: "Pack2 cell overvoltage protection recovery"
+      filters:
+        - throttle: 30s
+    cell_balancing_trigger_voltage:
+      name: "Pack2 cell balancing trigger voltage"
+      filters:
+        - throttle: 30s
+    cell_soc100_voltage:
+      name: "Pack2 cell soc100 voltage"
+      filters:
+        - throttle: 30s
+    cell_soc0_voltage:
+      name: "Pack2 cell soc0 voltage"
+      filters:
+        - throttle: 30s
+    cell_request_charge_voltage:
+      name: "Pack2 cell request charge voltage"
+      filters:
+        - throttle: 30s
+    cell_request_float_voltage:
+      name: "Pack2 cell request float voltage"
+      filters:
+        - throttle: 30s
+    cell_power_off_voltage:
+      name: "Pack2 cell power off voltage"
+      filters:
+        - throttle: 30s
+    cell_balancing_starting_voltage:
+      name: "Pack2 cell balancing starting voltage"
+      filters:
+        - throttle: 30s
+    max_charging_current:
+      name: "Pack2 max charging current"
+      filters:
+        - throttle: 30s
+    charging_overcurrent_protection_delay:
+      name: "Pack2 charging overcurrent protection delay"
+      filters:
+        - throttle: 30s
+    charging_overcurrent_protection_recovery_delay:
+      name: "Pack2 charging overcurrent protection recovery delay"
+      filters:
+        - throttle: 30s
+    max_discharging_current:
+      name: "Pack2 max discharging current"
+      filters:
+        - throttle: 30s
+    discharging_overcurrent_protection_delay:
+      name: "Pack2 discharging overcurrent protection delay"
+      filters:
+        - throttle: 30s
+    discharging_overcurrent_protection_recovery_delay:
+      name: "Pack2 discharging overcurrent protection recovery delay"
+      filters:
+        - throttle: 30s
+    short_circuit_protection_delay:
+      name: "Pack2 short circuit protection delay"
+      filters:
+        - throttle: 30s
+    short_circuit_protection_recovery_delay:
+      name: "Pack2 short circuit protection recovery delay"
+      filters:
+        - throttle: 30s
+    max_balancing_current:
+      name: "Pack2 max balancing current"
+      filters:
+        - throttle: 30s
+    charging_overtemperature_protection:
+      name: "Pack2 charging overtemperature protection"
+      filters:
+        - throttle: 30s
+    charging_overtemperature_protection_recovery:
+      name: "Pack2 charging overtemperature protection recovery"
+      filters:
+        - throttle: 30s
+    discharging_overtemperature_protection:
+      name: "Pack2 discharging overtemperature protection"
+      filters:
+        - throttle: 30s
+    discharging_overtemperature_protection_recovery:
+      name: "Pack2 discharging overtemperature protection recovery"
+      filters:
+        - throttle: 30s
+    charging_lowtemperature_protection:
+      name: "Pack2 charging lowtemperature protection"
+      filters:
+        - throttle: 30s
+    charging_lowtemperature_protection_recovery:
+      name: "Pack2 charging lowtemperature protection recovery"
+      filters:
+        - throttle: 30s
+    mos_overtemperature_protection:
+      name: "Pack2 mos overtemperature protection"
+      filters:
+        - throttle: 30s
+    mos_overtemperature_protection_recovery:
+      name: "Pack2 mos overtemperature protection recovery"
+      filters:
+        - throttle: 30s
+    cell_count_settings:
+      name: "Pack2 cell count settings"
+      filters:
+        - throttle: 30s
+    battery_capacity_total_settings:
+      name: "Pack2 battery capacity total settings"
+      filters:
+        - throttle: 30s
+    precharging_time_from_discharge:
+      name: "Pack2 precharging time from discharge"
+      filters:
+        - throttle: 30s
+    cell_request_charge_voltage_time:
+      name: "Pack2 cell request charge voltage time"
+      filters:
+        - throttle: 30s
+    cell_request_float_voltage_time:
+      name: "Pack2 cell request float voltage time"
+      filters:
+        - throttle: 30s

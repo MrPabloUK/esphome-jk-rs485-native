@@ -1,0 +1,18 @@
+esphome-jk-rs485-native
+Copyright 2026 MrPabloUK
+
+This product includes software developed for monitoring Jikong (JK) BMS devices
+over the proprietary RS485 dump protocol.
+
+Portions of the decode and entity surface in components/jk_rs485_native_bms/
+are derived from:
+
+  txubelaxu/esphome-jk-bms  (Apache License 2.0)
+  https://github.com/txubelaxu/esphome-jk-bms
+
+which itself incorporates work from:
+
+  syssi/esphome-jk-bms  (Apache License 2.0)
+  https://github.com/syssi/esphome-jk-bms
+
+See LICENSE for the full Apache-2.0 text.
