@@ -87,6 +87,10 @@ jk_rs485_native_bms:
 
 `cell_count` is a YAML loop-bound hint. The settings dump still publishes the BMS-reported count.
 
+## CI
+
+Host tests: `make -C tests/cpp test` and `python3 tests/config/test_validation.py`. GitHub Actions (`.github/workflows/ci.yml`) also runs `esphome config` / `esphome compile` on the two-pack example. Pushing that workflow file requires a GitHub token with the `workflow` scope.
+
 ## License
 
 Apache-2.0. Decode/entity code ported from txubelaxu/syssi; see `NOTICE`.

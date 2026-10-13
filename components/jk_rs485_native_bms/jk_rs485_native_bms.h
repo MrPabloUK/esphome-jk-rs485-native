@@ -8,6 +8,8 @@
 #include "esphome/core/component.h"
 #include "../jk_rs485_native_master/jk_rs485_native_master.h"
 
+#include <cstdint>
+#include <string>
 #include <vector>
 
 namespace esphome {
